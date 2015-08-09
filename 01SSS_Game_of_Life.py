@@ -1,6 +1,7 @@
 __author__ = 'Kubisjak'
 
 import tkinter as tk
+import math
 import time
 import numpy as np
 from scipy.signal import convolve2d
@@ -52,12 +53,125 @@ def getmode():
         mode = False
 
 
-def testvariable():
-    print("Starting position: " + option_start_var.get())
-    print("Number of generations: " + option_ngen_var.get())
-    print("Grid size: " + option_gsize_var.get())
-    print("Transition mode: " + option_transition_var.get())
-    return
+def create_buffer():
+    global static1, static2, static3, static4, blinker, toad, \
+        glider, diehard, boat, r_pentomino, acorn, spaceship, block_switch_engine
+
+    static1 = np.ones((2, 2))
+
+    static2 = np.array([
+        [0, 1, 1, 0],
+        [1, 0, 0, 1],
+        [0, 1, 1, 0]])
+
+    static3 = np.array([
+        [0, 1, 1, 0],
+        [1, 0, 0, 1],
+        [0, 1, 0, 1],
+        [0, 0, 1, 0]])
+
+    static4 = np.array([
+        [1, 1, 0],
+        [1, 0, 1],
+        [0, 1, 0]])
+
+# Oscilators
+
+    blinker = np.array([[1, 1, 1]])
+
+    toad = np.array([[1, 1, 1, 0], [0, 1, 1, 1]])
+
+    glider = np.array([[1, 0, 0], [0, 1, 1], [1, 1, 0]])
+
+# Others
+
+    diehard = np.array([
+        [0, 0, 0, 0, 0, 0, 1, 0],
+        [1, 1, 0, 0, 0, 0, 0, 0],
+        [0, 1, 0, 0, 0, 1, 1, 1]])
+
+    boat = np.array([
+        [1, 1, 0],
+        [1, 0, 1],
+        [0, 1, 0]])
+
+    r_pentomino = np.array([
+        [0, 1, 1],
+        [1, 1, 0],
+        [0, 1, 0]])
+
+    beacon = np.array([
+        [0, 0, 1, 1],
+        [0, 0, 1, 1],
+        [1, 1, 0, 0],
+        [1, 1, 0, 0]])
+
+    acorn = np.array([
+        [0, 1, 0, 0, 0, 0, 0],
+        [0, 0, 0, 1, 0, 0, 0],
+        [1, 1, 0, 0, 1, 1, 1]])
+
+    spaceship = np.array([
+        [0, 0, 1, 1, 0],
+        [1, 1, 0, 1, 1],
+        [1, 1, 1, 1, 0],
+        [0, 1, 1, 0, 0]])
+
+    block_switch_engine = np.array([
+        [0, 0, 0, 0, 0, 0, 1, 0],
+        [0, 0, 0, 0, 1, 0, 1, 1],
+        [0, 0, 0, 0, 1, 0, 1, 0],
+        [0, 0, 0, 0, 1, 0, 0, 0],
+        [0, 0, 1, 0, 0, 0, 0, 0],
+        [1, 0, 1, 0, 0, 0, 0, 0]])
+
+
+def get_start_shape():
+    global static1, static2, static3, static4, blinker, toad, \
+        glider, diehard, boat, r_pentomino, acorn, spaceship, block_switch_engine, start_shape
+
+    create_buffer()
+
+    if option_start_var.get() == OPTIONS_start[0]:
+        start_shape = "Random Start"  # mode Automatic = True
+
+    elif option_start_var.get() == OPTIONS_start[1]:
+        start_shape = static1
+
+    elif option_start_var.get() == OPTIONS_start[2]:
+        start_shape = static2
+
+    elif option_start_var.get() == OPTIONS_start[3]:
+        start_shape = static3
+
+    elif option_start_var.get() == OPTIONS_start[4]:
+        start_shape = static4
+
+    elif option_start_var.get() == OPTIONS_start[5]:
+        start_shape = blinker
+
+    elif option_start_var.get() == OPTIONS_start[6]:
+        start_shape = toad
+
+    elif option_start_var.get() == OPTIONS_start[7]:
+        start_shape = glider
+
+    elif option_start_var.get() == OPTIONS_start[8]:
+        start_shape = diehard
+
+    elif option_start_var.get() == OPTIONS_start[9]:
+        start_shape = r_pentomino
+
+    elif option_start_var.get() == OPTIONS_start[10]:
+        start_shape = acorn
+
+    elif option_start_var.get() == OPTIONS_start[11]:
+        start_shape = spaceship
+
+    elif option_start_var.get() == OPTIONS_start[12]:
+        start_shape = block_switch_engine
+
+    return start_shape
 
 
 def create_board(board):
@@ -68,6 +182,26 @@ def create_board(board):
     board_image[:, :, 1] = board[:, :]
     board_image[:, :, 2] = board[:, :]
     return board_image
+
+
+def put_in_center(cell):
+    global size
+    board = np.zeros(shape=(size, size))
+
+    coordinate1 = math.floor((size - cell.shape[0])/2)
+    coordinate2 = math.floor((size - cell.shape[1])/2)
+
+    coordinate1end = size - coordinate1
+    coordinate2end = size - coordinate2
+
+    if cell.shape[0] % 2 != 0:
+        coordinate1end -= 1
+    if cell.shape[1] % 2 != 0:
+        coordinate2end -= 1
+
+    board[coordinate1:coordinate1end, coordinate2:coordinate2end] = cell
+
+    return board
 
 
 # Initialize
@@ -82,7 +216,9 @@ GUI.title("01SSS - Game of Life")
 header = tk.Label(text="Select starting value")
 header.pack(side=tk.TOP, fill=tk.BOTH)
 
-OPTIONS_start = ["Random Start", "Item 1", "Item 2"]
+
+OPTIONS_start = ["Random Start", "Static 1", "Static 2", "Static 3", "Static 4", "Blinker", "Toad",
+                 "Glider", "Diehard", "Boat", "Pentomino", "Acorn", "Spaceship", "Block Switch Engine"]
 option_start_var = tk.StringVar(GUI)
 option_start_var.set(OPTIONS_start[0])  # default value
 
@@ -234,20 +370,23 @@ def game_of_life(board):
     return
 
 
-def start_up(board):  # Called for the first time to set up the board and decide on manual/auto advancing
-    global evolutions
+def start_up():  # Called for the first time to set up the board and decide on manual/auto advancing
+    global evolutions, start_shape
     getmode()  # getmode() in order to find current mode set up
     getngen()
     getsize()
     evolutions = np.zeros((size, size, ngen+1))  # Stores every generation
 
+    if start_shape == "Random Start":
+        board = random_start()
+    else:
+        board = put_in_center(start_shape)
+
     if not mode:  # Manual advancing
         button_next.config(state=tk.NORMAL)  # Button next becomes click-able
         game_of_life(board)
-        print("Automatic advancing is ", mode)
 
     else:  # Automatic advancing
-        print("Automatic advancing is ", mode)
         game_of_life(board)
         button_next.config(state=tk.DISABLED)  # Disable next button
 
@@ -287,7 +426,7 @@ text_frame.pack(side=tk.TOP, fill=tk.BOTH, anchor=tk.NE)
 text_frame_text = tk.Label(text_frame, text=status_string_var)
 text_frame_text.pack(side=tk.TOP, fill=tk.BOTH, anchor=tk.NE)
 
-button_start = tk.Button(GUI, text="Start", command=lambda: start_up(random_start()))
+button_start = tk.Button(GUI, text="Start", command=lambda: start_up())
 button_start.pack(side=tk.TOP, fill=tk.BOTH)
 
 button_next = tk.Button(GUI, text="Next", command=next_step)
