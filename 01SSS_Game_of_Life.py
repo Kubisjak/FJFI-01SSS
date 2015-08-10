@@ -55,7 +55,7 @@ def getmode():
 
 def create_buffer():
     global static1, static2, static3, static4, blinker, toad, \
-        glider, diehard, boat, r_pentomino, acorn, spaceship, block_switch_engine
+        glider, diehard, boat, beacon, r_pentomino, acorn, spaceship, block_switch_engine
 
     static1 = np.ones((2, 2))
 
@@ -128,7 +128,7 @@ def create_buffer():
 
 def get_start_shape():
     global static1, static2, static3, static4, blinker, toad, \
-        glider, diehard, boat, r_pentomino, acorn, spaceship, block_switch_engine, start_shape
+        glider, diehard, boat, beacon, r_pentomino, acorn, spaceship, block_switch_engine, start_shape
 
     create_buffer()
 
@@ -160,15 +160,21 @@ def get_start_shape():
         start_shape = diehard
 
     elif option_start_var.get() == OPTIONS_start[9]:
-        start_shape = r_pentomino
+        start_shape = boat
 
     elif option_start_var.get() == OPTIONS_start[10]:
-        start_shape = acorn
+        start_shape = beacon
 
     elif option_start_var.get() == OPTIONS_start[11]:
-        start_shape = spaceship
+        start_shape = r_pentomino
 
     elif option_start_var.get() == OPTIONS_start[12]:
+        start_shape = acorn
+
+    elif option_start_var.get() == OPTIONS_start[13]:
+        start_shape = spaceship
+
+    elif option_start_var.get() == OPTIONS_start[14]:
         start_shape = block_switch_engine
 
     return start_shape
@@ -186,6 +192,7 @@ def create_board(board):
 
 def put_in_center(cell):
     global size
+
     board = np.zeros(shape=(size, size))
 
     coordinate1 = math.floor((size - cell.shape[0])/2)
@@ -203,7 +210,6 @@ def put_in_center(cell):
 
     return board
 
-
 # Initialize
 GUI = tk.Tk()
 status_string_var = "Game of Life is not running yet."
@@ -218,7 +224,7 @@ header.pack(side=tk.TOP, fill=tk.BOTH)
 
 
 OPTIONS_start = ["Random Start", "Static 1", "Static 2", "Static 3", "Static 4", "Blinker", "Toad",
-                 "Glider", "Diehard", "Boat", "Pentomino", "Acorn", "Spaceship", "Block Switch Engine"]
+                 "Glider", "Diehard", "Boat", "Beacon", "Pentomino", "Acorn", "Spaceship", "Block Switch Engine"]
 option_start_var = tk.StringVar(GUI)
 option_start_var.set(OPTIONS_start[0])  # default value
 
@@ -334,8 +340,10 @@ def random_start():
     getsize()
     global First, current_board, size
     First = True
+
     if size % 2 != 0:
         size += 1
+
     board = np.zeros(shape=(size, size))
     # Random start
     r = np.random.random((size - size / 2, size - size / 2))
@@ -356,8 +364,10 @@ def game_of_life(board):
     Start = True
     # first time board should be already simulated !
     if First:
+
         current_generation = 0
         current_board = board
+
         current_board_img = create_board(board)
         plot = plt.imshow(current_board_img, cmap="Greys", interpolation="nearest")
         # canvas_text = plt.
@@ -371,11 +381,16 @@ def game_of_life(board):
 
 
 def start_up():  # Called for the first time to set up the board and decide on manual/auto advancing
-    global evolutions, start_shape
+    global evolutions, start_shape, current_generation, First
+
     getmode()  # getmode() in order to find current mode set up
     getngen()
     getsize()
+    get_start_shape()
+
     evolutions = np.zeros((size, size, ngen+1))  # Stores every generation
+    current_generation = 0
+    First = True
 
     if start_shape == "Random Start":
         board = random_start()
@@ -405,7 +420,7 @@ def next_step():  # Makes Game of Life step
 
 
 def change_status():  # Changes number of generation in the Output text-frame, fills evolutions vector
-    global status_string_var, current_generation, text_frame_text, evolutions, current_board
+    global status_string_var, current_generation, text_frame_text, evolutions, current_board, First
 
     evolutions[:, :, current_generation] = current_board[:, :]  # Store every generation into evolutions
     current_generation += 1
