@@ -11,12 +11,4 @@
     <ConfirmationsSetting value="0" id="Remove" />
   </component>
   <component name="ProjectRootManager" version="2" project-jdk-name="Python 3.4.3 (/Library/Frameworks/Python.framework/Versions/3.4/bin/python3.4)" project-jdk-type="Python SDK" />
-  <component name="PyConsoleOptionsProvider">
-    <option name="myPythonConsoleState">
-      <console-settings sdk-home="/usr/bin/python" working-directory="$USER_HOME$">
-        <option name="mySdkHome" value="/usr/bin/python" />
-        <option name="myWorkingDirectory" value="$USER_HOME$" />
-      </console-settings>
-    </option>
-  </component>
 </project>

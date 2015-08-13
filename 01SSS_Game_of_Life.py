@@ -1,5 +1,14 @@
 __author__ = 'Kubisjak'
 
+"""
+Created for 01SSS at FNSPE, CTU in Prague
+
+Assignment: Create Game of Life script with
+ - parameters - number of runs, size of grid, starting position
+ - optional - create GUI
+
+"""
+
 import tkinter as tk
 import math
 import time
