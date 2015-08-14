@@ -9,6 +9,7 @@ Assignment: Create an Optimal Velocity model with
  - optional: create GUI
 
 """
+
 # Imports --------------------------------------------------------------------------------------------------------------
 import tkinter as tk
 import math
@@ -49,16 +50,20 @@ def euler_method(x, v, n_cars, h, tau, d_safe, v_max):
 
 
 def optimal_velocity_model(n, n_cars, d_0, v_0, h, tau, d_safe, v_max):
+    global x_limit, canvas
 
     car_positions = np.linspace(0, n_cars, n_cars)
     x = np.array(sorted(np.random.random(n_cars) + car_positions))  # Generation of cars with minimal distance
     x = x * d_0
-    print(x)
+    v = np.random.random(n_cars) * v_0  # Generating initial speeds greater than v_0
+    xx = np.zeros([n_cars, n])  # Matrix of locations
+    vv = np.zeros([n_cars, n])  # Matrix of velocities
+    x_limit = max(x) + max(x)/2
 
-    # Creating figure, that will be updated later ---------------------
-    figure = plt.figure(figsize=(7, 1), dpi=150)
-    graph1 = figure.add_subplot(111)
+    # Creating figure and graph area
+    graph1 = f.add_subplot(211)
     graph1.plot(x, np.linspace(0, 0, n_cars), "ro")
+    graph1.set_title("Optimal Velocity model Animation")
     graph1.tick_params(
         axis="both",
         which="both",
@@ -68,32 +73,51 @@ def optimal_velocity_model(n, n_cars, d_0, v_0, h, tau, d_safe, v_max):
         right="off",
         left="off",
         labelleft="off")
-    figure.tight_layout()
-    plt.ion()  # Enables interactive plotting
-    plt.show()
-
-    v = np.random.random(n_cars) * v_0  # Generating initial speeds greater than v_0
-    x_limit = max(x) + max(x)/2
-
-    xx = np.zeros([n_cars, n])  # Matrix of locations
-    vv = np.zeros([n_cars, n])  # Matrix of velocities
+    canvas.show()
 
     for i in range(n):
         xx[:, i] = x
         vv[:, i] = v
-        [x, v] = euler_method(x, v, n_cars, h, tau, d_safe, v_max)
+        x, v = euler_method(x, v, n_cars, h, tau, d_safe, v_max)
 
         # Motion plotting area ---------------------------------
-        graph1.clear()
-        graph1.plot(x, np.linspace(0, 0, n_cars), "ro")
-        graph1.set_xlim(0, x_limit)
-        plt.draw()
-        time.sleep(0.05)
+        # time.sleep(0.05)
+        # graph1.clear()
+        # graph1.plot(x, np.linspace(0, 0, n_cars), "ro")
+        # graph1.set_xlim(0, x_limit)
+        # canvas.draw()
 
     for i in range(n_cars):
-        plt.plot(xx[i, :], range(n))
-    plt.show()
-    return
+        graph2 = f.add_subplot(212)
+        graph2.plot(xx[i, :], range(n))
+        f.tight_layout()
+
+
+# GUI Code ------------------------------------------------------------------------
+GUI = tk.Tk()
+GUI.title("01SSS - Optimal Velocity Model")
+
+canvas_frame = tk.Frame(GUI, bd=1)
+canvas_frame.pack()
+
+f = plt.figure(figsize=(7, 3), dpi=150)
+# Create Canvas
+canvas = FigureCanvasTkAgg(f, master=canvas_frame)
+canvas.show()
+canvas.get_tk_widget().pack(side=tk.TOP, fill=tk.BOTH, expand=True)
+canvas.tkcanvas.pack(side=tk.TOP, fill=tk.BOTH, expand=True)ň
+
+# # Physical parameters:
+# n_cars = 50  # number of cars
+# d_0 = 10  # minimal initial distance
+# tau = 2  # acceleration parameter
+# d_safe = 2  # minimal safe distance
+# v_0 = 10  # initial speed
+# v_max = 100  # maximum speed
+#
+# # Numeric parameters:
+# h = 0.02  # step size in Euler's method
+# n = 100  # number of simulation steps
 
 
 # Setting up parameters for testing:
@@ -110,4 +134,6 @@ v_max = 100  # maximum speed
 h = 0.02  # step size in Euler's method
 n = 100  # number of simulation steps
 
-optimal_velocity_model(n, n_cars, d_0, v_0,h, tau, d_safe, v_max)
+optimal_velocity_model(n, n_cars, d_0, v_0, h, tau, d_safe, v_max)
+
+GUI.mainloop()
