@@ -2,9 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="66cc59a3-6ef6-46db-bd45-1ddcc5191374" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/01SSS_Optimal_Velocity_Model_GUI.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Optimal_Velocity_Model.py" afterPath="$PROJECT_DIR$/Optimal_Velocity_Model.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/01SSS_Optimal_Velocity_Model_GUI.py" afterPath="$PROJECT_DIR$/01SSS_Optimal_Velocity_Model_GUI.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="FJFI-01SSS.iws" />
@@ -41,8 +39,8 @@
       <file leaf-file-name="01SSS_Optimal_Velocity_Model_GUI.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/01SSS_Optimal_Velocity_Model_GUI.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.57236844">
-              <caret line="66" column="23" selection-start-line="66" selection-start-column="23" selection-end-line="66" selection-end-column="23" />
+            <state vertical-scroll-proportion="0.375">
+              <caret line="89" column="0" selection-start-line="89" selection-start-column="0" selection-end-line="89" selection-end-column="0" />
               <folding>
                 <element signature="e#325#345#0" expanded="true" />
               </folding>
@@ -54,7 +52,7 @@
         <entry file="file://$PROJECT_DIR$/test.py">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="34" column="7" selection-start-line="34" selection-start-column="7" selection-end-line="34" selection-end-column="7" />
+              <caret line="40" column="0" selection-start-line="40" selection-start-column="0" selection-end-line="41" selection-end-column="39" />
               <folding>
                 <element signature="e#146#166#0" expanded="true" />
               </folding>
@@ -91,8 +89,8 @@
       <list>
         <option value="$PROJECT_DIR$/01SSS_Game_of_Life.py" />
         <option value="$PROJECT_DIR$/Optimal_Velocity_Model.py" />
-        <option value="$PROJECT_DIR$/01SSS_Optimal_Velocity_Model_GUI.py" />
         <option value="$PROJECT_DIR$/test.py" />
+        <option value="$PROJECT_DIR$/01SSS_Optimal_Velocity_Model_GUI.py" />
       </list>
     </option>
   </component>
@@ -167,7 +165,7 @@
       </console-settings>
     </option>
   </component>
-  <component name="RunManager" selected="Python.test">
+  <component name="RunManager" selected="Python.01SSS_Optimal_Velocity_Model_GUI">
     <configuration default="false" name="01SSS_Game_of_Life" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -366,8 +364,8 @@
     </list>
     <recent_temporary>
       <list size="4">
-        <item index="0" class="java.lang.String" itemvalue="Python.test" />
-        <item index="1" class="java.lang.String" itemvalue="Python.01SSS_Optimal_Velocity_Model_GUI" />
+        <item index="0" class="java.lang.String" itemvalue="Python.01SSS_Optimal_Velocity_Model_GUI" />
+        <item index="1" class="java.lang.String" itemvalue="Python.test" />
         <item index="2" class="java.lang.String" itemvalue="Python.Optimal_Velocity_Model" />
         <item index="3" class="java.lang.String" itemvalue="Python.01SSS_Game_of_Life" />
       </list>
@@ -390,7 +388,13 @@
       <option name="project" value="LOCAL" />
       <updated>1439488011659</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="GUI version with graph1 - subplot">
+      <created>1439587682535</created>
+      <option name="number" value="00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1439587682535</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -431,7 +435,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Added Optimal_Velocity_Model" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added Optimal_Velocity_Model" />
+    <MESSAGE value="GUI version with graph1 - subplot" />
+    <option name="LAST_COMMIT_MESSAGE" value="GUI version with graph1 - subplot" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -502,16 +507,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/01SSS_Game_of_Life.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="456" column="38" selection-start-line="456" selection-start-column="0" selection-end-line="457" selection-end-column="0" />
-          <folding>
-            <element signature="e#211#231#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Optimal_Velocity_Model.py">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -522,10 +517,20 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/01SSS_Game_of_Life.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="456" column="38" selection-start-line="456" selection-start-column="0" selection-end-line="457" selection-end-column="0" />
+          <folding>
+            <element signature="e#211#231#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/test.py">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="34" column="7" selection-start-line="34" selection-start-column="7" selection-end-line="34" selection-end-column="7" />
+          <caret line="40" column="0" selection-start-line="40" selection-start-column="0" selection-end-line="41" selection-end-column="39" />
           <folding>
             <element signature="e#146#166#0" expanded="true" />
           </folding>
@@ -534,8 +539,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/01SSS_Optimal_Velocity_Model_GUI.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.57236844">
-          <caret line="66" column="23" selection-start-line="66" selection-start-column="23" selection-end-line="66" selection-end-column="23" />
+        <state vertical-scroll-proportion="0.375">
+          <caret line="89" column="0" selection-start-line="89" selection-start-column="0" selection-end-line="89" selection-end-column="0" />
           <folding>
             <element signature="e#325#345#0" expanded="true" />
           </folding>
