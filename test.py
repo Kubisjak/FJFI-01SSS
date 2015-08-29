@@ -38,6 +38,12 @@ def plot(x, y):
 GUI = tk.Tk()
 GUI.title("Figure Test")
 
+
+n_cars = tk.IntVar(GUI)
+n_cars.set("20")
+print(n_cars)
+
+
 button1 = tk.Button(GUI, text="Next", command=lambda: main())
 button1.pack(side=tk.TOP, fill=tk.BOTH)
 
