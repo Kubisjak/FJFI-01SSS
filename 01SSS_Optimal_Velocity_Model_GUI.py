@@ -78,9 +78,9 @@ def euler_method(x, v, n_cars, h, tau, d_safe, v_max):
     dv = np.zeros(n_cars)
 
     for j in range(n_cars - 1):
-        dv[j] = tau ** (-1) * (optimal_velocity_function(x[j + 1] - x[j], d_safe, v_max) - v[j])
+            dv[j] = tau ** (-1) * (optimal_velocity_function(x[j+1] - x[j], d_safe, v_max) - v[j])
 
-    dv[n_cars - 1] = tau ** (-1) * (v_max - v[n_cars - 1])
+    dv[n_cars - 1] = tau ** (-1) * (v_max - v[n_cars - 1])  # Speed of first car
 
     x_new = x + h * v
     v_new = v + h * dv
@@ -94,15 +94,15 @@ def optimal_velocity_model(n, n_cars, d_0, v_0, h, tau, d_safe, v_max):
     car_positions = np.linspace(0, n_cars, n_cars)
     x = np.array(sorted(np.random.random(n_cars) + car_positions))  # Generation of cars with minimal distance
     x = x * d_0
-    v = np.random.random(n_cars) * v_0  # Generating initial speeds not greater than v_0
+    v = np.random.random(n_cars) + v_0  # Generating initial speeds not greater than v_0
     xx = np.zeros([n_cars, n])  # Matrix of locations
     vv = np.zeros([n_cars, n])  # Matrix of velocities
-    x_limit = max(x) + max(x) / 4  # Interval in which will cars be
 
     for i in range(n):
         xx[:, i] = x
         vv[:, i] = v
-        x, v = euler_method(x, v, n_cars, h, tau, d_safe, v_max)
+        [x, v] = euler_method(x, v, n_cars, h, tau, d_safe, v_max)
+    x_limit = xx.max()  # Interval in which will cars be
 
 
 def init():
@@ -130,6 +130,34 @@ def init():
     # OVM function:
     optimal_velocity_model(n, n_cars_int, d_0_int, v_0_int, h, tau_int, d_safe_int, v_max_int)
 
+
+# def time_space_diagram_plot():
+#     # Time-space diagram canvas frame
+#     global xx, n_cars, n
+#     canvas_frame_2 = tk.Frame(GUI, bd=1)
+#     canvas_frame_2.grid(row=8, column=0)
+#     g = plt.figure(figsize=(1, 1), dpi=150)
+#     canvas = FigureCanvasTkAgg(g, master=canvas_frame_2)
+#     canvas.show()
+#     canvas.get_tk_widget().pack(side=tk.TOP, fill=tk.BOTH)
+#     canvas.tkcanvas.pack(side=tk.TOP, fill=tk.BOTH)
+#
+#     for i in range(n_cars.get()):
+#         plt.plot(xx[i, :], range(n))
+#     plt.tight_layout()
+#     plt.gcf().canvas.draw()
+
+
+def start_red_light():
+    global n_cars, d_0, tau, d_safe, v_0, v_max, plotShift, y, h, n, fps, sleep_interval, length
+    n_cars.set(5)
+    d_0.set(1)
+    tau.set(2)
+    d_safe.set(2)
+    v_0.set(0)
+    v_max.set(100)
+    length.set(100)
+
 # GUI Code -------------------------------------------------------------------------------------------------------------
 GUI = tk.Tk()
 GUI.title("01SSS - Optimal Velocity Model")
@@ -139,9 +167,10 @@ GUI.grid_columnconfigure(0, weight=1)
 GUI.grid_columnconfigure(1, weight=1)
 GUI.grid_columnconfigure(2, weight=10)
 
+# Animation canvas frame
 canvas_frame = tk.Frame(GUI, bd=1)
 canvas_frame.grid(row=8, column=0, columnspan=3)
-f = plt.figure(figsize=(7, 1), dpi=150)
+f = plt.figure(figsize=(6, 1), dpi=150)
 canvas = FigureCanvasTkAgg(f, master=canvas_frame)
 canvas.show()
 canvas.get_tk_widget().pack(side=tk.TOP, fill=tk.BOTH)
@@ -154,11 +183,14 @@ header.grid(row=0, column=0, sticky=tk.E)
 button1 = ttk.Button(GUI, text="Make Step", command=lambda: shift_plot())
 button1.grid(row=3, column=2, rowspan=2, sticky=tk.N + tk.S + tk.W + tk.E)
 
-button2 = ttk.Button(GUI, text="Auto Start", command=lambda: auto())
+button2 = ttk.Button(GUI, text="Start", command=lambda: auto())
 button2.grid(row=1, column=2, rowspan=2, sticky=tk.W + tk.E + tk.N + tk.S)
 
+button2 = ttk.Button(GUI, text="RedLight Start", command=lambda: start_red_light())
+button2.grid(row=5, column=2, rowspan=2, sticky=tk.W + tk.E + tk.N + tk.S)
+
 button_quit = ttk.Button(GUI, text="Quit", command=_quit)
-button_quit.grid(row=5, column=2, rowspan=3, sticky=tk.W + tk.E + tk.N + tk.S)
+button_quit.grid(row=7, column=2, sticky=tk.W + tk.E + tk.N + tk.S)
 
 # Parameter frame: -----------------------------------------------------------------------------------------------------
 # Creates frame where the entry boxes required for parameter input are stored
@@ -216,12 +248,14 @@ entry_time.grid(row=7, column=1, sticky=tk.W + tk.E + tk.N + tk.S)
 # Set default parameters
 n_cars.set(20)  # Set default value for n_cars
 d_0.set(15)
-tau.set(2)
+tau.set(4)
 d_safe.set(10)
 v_0.set(15)
 v_max.set(100)
 length.set(100)
 
 init()
+
+print(xx)
 
 GUI.mainloop()
