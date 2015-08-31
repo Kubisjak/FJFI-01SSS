@@ -22,6 +22,8 @@ import matplotlib.pyplot as plt
 from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg  # NavigationToolbar2TkAgg
 # ----------------------------------------------------------------------------------------------------------------------
 plt.rcParams["toolbar"] = "None"  # Do not display toolbar when calling plot
+
+
 # Support functions:
 
 
@@ -75,18 +77,33 @@ def optimal_velocity_function(dx, d_safe, v_max):
     return vx_opt
 
 
-def euler_method(x, v, n_cars, h, tau, d_safe, v_max):
+def euler_method(x, v, n_cars, h, t, tau, d_safe, v_max):
     # Euler method used to solve ODE
     # returns new position of car and its new velocity
     dv = np.zeros(n_cars)
 
     for j in range(n_cars - 1):
-            dv[j] = tau ** (-1) * (optimal_velocity_function(x[j+1] - x[j], d_safe, v_max) - v[j])
+        dv[j] = (tau ** (-1)) * (optimal_velocity_function(x[j + 1] - x[j], d_safe, v_max) - v[j])
 
-    dv[n_cars - 1] = tau ** (-1) * (v_max - v[n_cars - 1])  # Speed of first car
+    #  Original speed of first car
+    dv[n_cars - 1] = (tau ** (-1)) * (v_max - v[n_cars - 1])
 
-    v_new = v + h * dv
-    x_new = x + h * v_new
+    # Acceleration of the first car - at least one braking/stopping in the middle of
+    # simulation
+    dv[n_cars - 1] = (tau ** (-1)) * v_max * 0.5 * 3 * np.cos(np.linspace(0, 2 * np.pi, n)[t])
+
+    x_new = x + (h * v)
+    v_new = v + (h * dv)
+
+    # Condition for case if both car acceleration and speed are negative:
+    if v_new[n_cars - 1] < 0:
+        v_new[n_cars - 1] = 0
+
+    # Condition to stop overtake - if the distance is less than d_safe, then
+    # down to 0.8 speed of car before
+    for j in range(n_cars - 1):
+        if x_new[j + 1] - x_new[j] < d_safe:
+            v_new[j] = 0.9 * v[j + 1]
 
     return [x_new, v_new]
 
@@ -136,6 +153,7 @@ def init():
     optimal_velocity_model(n, n_cars_int, d_0_int, v_0_int, h, tau_int, d_safe_int, v_max_int)
     return
 
+
 # def time_space_diagram_plot():
 #     # Time-space diagram canvas frame
 #     global xx, n_cars, n
@@ -163,6 +181,7 @@ def start_red_light():
     v_max.set(100)
     length.set(100)
     return
+
 
 # GUI Code -------------------------------------------------------------------------------------------------------------
 GUI = tk.Tk()
