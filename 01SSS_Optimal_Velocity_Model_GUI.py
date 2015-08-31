@@ -39,6 +39,7 @@ def shift_plot():
         print(plotShift)
     else:
         print("Finished all iterations.")
+    return
 
 
 def plot(x, y):
@@ -57,6 +58,7 @@ def plot(x, y):
     plt.xlim(0, x_limit)
     plt.tight_layout()
     plt.gcf().canvas.draw()
+    return
 
 
 def auto():
@@ -65,10 +67,11 @@ def auto():
     for i in range(n - 1):  # starting value 0 -> range n-1
         time.sleep(sleep_interval)
         shift_plot()
+    return
 
 
 def optimal_velocity_function(dx, d_safe, v_max):
-    vx_opt = v_max * (np.tanh(dx - d_safe) + np.tanh(d_safe))
+    vx_opt = 0.5 * v_max * (np.tanh(dx - d_safe) + np.tanh(d_safe))
     return vx_opt
 
 
@@ -82,8 +85,8 @@ def euler_method(x, v, n_cars, h, tau, d_safe, v_max):
 
     dv[n_cars - 1] = tau ** (-1) * (v_max - v[n_cars - 1])  # Speed of first car
 
-    x_new = x + h * v
     v_new = v + h * dv
+    x_new = x + h * v_new
 
     return [x_new, v_new]
 
@@ -94,7 +97,7 @@ def optimal_velocity_model(n, n_cars, d_0, v_0, h, tau, d_safe, v_max):
     car_positions = np.linspace(0, n_cars, n_cars)
     x = np.array(sorted(np.random.random(n_cars) + car_positions))  # Generation of cars with minimal distance
     x = x * d_0
-    v = np.random.random(n_cars) + v_0  # Generating initial speeds not greater than v_0
+    v = np.random.random(n_cars) + v_0  # Generating initial speeds around v_0
     xx = np.zeros([n_cars, n])  # Matrix of locations
     vv = np.zeros([n_cars, n])  # Matrix of velocities
 
@@ -102,7 +105,9 @@ def optimal_velocity_model(n, n_cars, d_0, v_0, h, tau, d_safe, v_max):
         xx[:, i] = x
         vv[:, i] = v
         [x, v] = euler_method(x, v, n_cars, h, tau, d_safe, v_max)
+
     x_limit = xx.max()  # Interval in which will cars be
+    return
 
 
 def init():
@@ -129,7 +134,7 @@ def init():
 
     # OVM function:
     optimal_velocity_model(n, n_cars_int, d_0_int, v_0_int, h, tau_int, d_safe_int, v_max_int)
-
+    return
 
 # def time_space_diagram_plot():
 #     # Time-space diagram canvas frame
@@ -152,11 +157,12 @@ def start_red_light():
     global n_cars, d_0, tau, d_safe, v_0, v_max, plotShift, y, h, n, fps, sleep_interval, length
     n_cars.set(5)
     d_0.set(1)
-    tau.set(2)
+    tau.set(1)
     d_safe.set(2)
     v_0.set(0)
     v_max.set(100)
     length.set(100)
+    return
 
 # GUI Code -------------------------------------------------------------------------------------------------------------
 GUI = tk.Tk()
@@ -248,14 +254,12 @@ entry_time.grid(row=7, column=1, sticky=tk.W + tk.E + tk.N + tk.S)
 # Set default parameters
 n_cars.set(20)  # Set default value for n_cars
 d_0.set(15)
-tau.set(4)
+tau.set(1)
 d_safe.set(10)
 v_0.set(15)
 v_max.set(100)
 length.set(100)
 
 init()
-
-print(xx)
 
 GUI.mainloop()
