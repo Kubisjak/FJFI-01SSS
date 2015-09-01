@@ -5,7 +5,6 @@ Created for 01SSS at FNSPE, CTU in Prague
 
 Assignment: Create an Optimal Velocity model with
  - time dependent parameters
- - with reaction delay
  - optional: create GUI
 
 """
@@ -88,9 +87,10 @@ def euler_method(x, v, n_cars, h, t, tau, d_safe, v_max):
     #  Original speed of first car
     dv[n_cars - 1] = (tau ** (-1)) * (v_max - v[n_cars - 1])
 
-    # Acceleration of the first car - at least one braking/stopping in the middle of
-    # simulation
-    dv[n_cars - 1] = (tau ** (-1)) * v_max * 0.5 * 3 * np.cos(np.linspace(0, 2 * np.pi, n)[t])
+    # Time dependant parameters:
+    # Acceleration of the first car - at least one braking/stopping in the middle of simulation
+    # np.cos(np.linspace(0, 2 * np.pi, n)[t] -> [t] states index of current "time" point in simulation used later
+    dv[n_cars - 1] = (tau ** (-1)) * v_max * np.cos(3 * np.linspace(0, 2 * np.pi, n)[t])
 
     x_new = x + (h * v)
     v_new = v + (h * dv)
@@ -121,7 +121,7 @@ def optimal_velocity_model(n, n_cars, d_0, v_0, h, tau, d_safe, v_max):
     for i in range(n):
         xx[:, i] = x
         vv[:, i] = v
-        [x, v] = euler_method(x, v, n_cars, h, tau, d_safe, v_max)
+        [x, v] = euler_method(x, v, n_cars, h, i, tau, d_safe, v_max)
 
     x_limit = xx.max()  # Interval in which will cars be
     return

@@ -2,6 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="66cc59a3-6ef6-46db-bd45-1ddcc5191374" name="Default" comment="">
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Optimal_Velocity_Model.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/test.py" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/01SSS_Optimal_Velocity_Model_GUI.py" afterPath="$PROJECT_DIR$/01SSS_Optimal_Velocity_Model_GUI.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
@@ -39,22 +41,10 @@
       <file leaf-file-name="01SSS_Optimal_Velocity_Model_GUI.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/01SSS_Optimal_Velocity_Model_GUI.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.53257793">
-              <caret line="90" column="67" selection-start-line="90" selection-start-column="67" selection-end-line="90" selection-end-column="67" />
+            <state vertical-scroll-proportion="0.28125">
+              <caret line="110" column="0" selection-start-line="110" selection-start-column="0" selection-end-line="126" selection-end-column="10" />
               <folding>
-                <element signature="e#325#345#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Optimal_Velocity_Model.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Optimal_Velocity_Model.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="92" column="0" selection-start-line="92" selection-start-column="0" selection-end-line="95" selection-end-column="10" />
-              <folding>
-                <element signature="e#324#344#0" expanded="true" />
+                <element signature="e#302#322#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -426,7 +416,13 @@
       <option name="project" value="LOCAL" />
       <updated>1441006418082</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="Solved overtake problem by adding additional condiiton - finally omg.&#10;Added time depended parameters - speed of first car oscilates.&#10;">
+      <created>1441020808646</created>
+      <option name="number" value="00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1441020808646</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TodoView">
@@ -442,12 +438,15 @@
     <frame x="118" y="23" width="1322" height="824" extended-state="0" />
     <editor active="true" />
     <layout>
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.329235" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.329235" sideWeight="0.49730977" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24980783" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.14911607" sideWeight="0.49186993" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.39782017" sideWeight="0.49730977" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.39782017" sideWeight="0.5057648" order="12" side_tool="true" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.30790192" sideWeight="0.49116063" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24442737" sideWeight="0.5081301" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.30874318" sideWeight="0.50883937" order="8" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32833788" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
@@ -455,12 +454,9 @@
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.329235" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.39782017" sideWeight="0.49730977" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.39782017" sideWeight="0.49423522" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.30790192" sideWeight="0.49116063" order="2" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="Vcs.Log.UiProperties">
@@ -480,7 +476,8 @@
     <MESSAGE value="Working animation with next button&#10;&#10;TODO: separate animation withou clicking" />
     <MESSAGE value="Everything working&#10;&#10;TODO: Add time_dependent parameters, figure out why overtaking occurs" />
     <MESSAGE value="Fixed overtake problem - however it might still occur in congested flow&#10;&#10;TODO: Add time_dependent parameters/delay/one red light in the middle" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fixed overtake problem - however it might still occur in congested flow&#10;&#10;TODO: Add time_dependent parameters/delay/one red light in the middle" />
+    <MESSAGE value="Solved overtake problem by adding additional condiiton - finally omg.&#10;Added time depended parameters - speed of first car oscilates.&#10;" />
+    <option name="LAST_COMMIT_MESSAGE" value="Solved overtake problem by adding additional condiiton - finally omg.&#10;Added time depended parameters - speed of first car oscilates.&#10;" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -513,17 +510,7 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="260" column="15" selection-start-line="260" selection-start-column="15" selection-end-line="260" selection-end-column="15" />
           <folding>
-            <element signature="e#325#345#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Optimal_Velocity_Model.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="92" column="0" selection-start-line="92" selection-start-column="0" selection-end-line="95" selection-end-column="10" />
-          <folding>
-            <element signature="e#324#344#0" expanded="true" />
+            <element signature="e#302#322#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -543,17 +530,7 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="e#325#345#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Optimal_Velocity_Model.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="98" column="36" selection-start-line="98" selection-start-column="36" selection-end-line="98" selection-end-column="36" />
-          <folding>
-            <element signature="e#324#344#0" expanded="true" />
+            <element signature="e#302#322#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -573,24 +550,7 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="160" column="0" selection-start-line="160" selection-start-column="0" selection-end-line="160" selection-end-column="0" />
           <folding>
-            <element signature="e#325#345#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/test.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="40" column="0" selection-start-line="40" selection-start-column="0" selection-end-line="41" selection-end-column="39" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Optimal_Velocity_Model.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="105" column="8" selection-start-line="105" selection-start-column="8" selection-end-line="105" selection-end-column="8" />
-          <folding>
-            <element signature="e#324#344#0" expanded="true" />
+            <element signature="e#302#322#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -601,16 +561,6 @@
           <caret line="261" column="36" selection-start-line="261" selection-start-column="36" selection-end-line="261" selection-end-column="36" />
           <folding>
             <element signature="e#211#231#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Optimal_Velocity_Model.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="e#324#344#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -663,32 +613,16 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="83" column="0" selection-start-line="83" selection-start-column="0" selection-end-line="83" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/test.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="42" column="14" selection-start-line="42" selection-start-column="14" selection-end-line="42" selection-end-column="14" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Optimal_Velocity_Model.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="92" column="0" selection-start-line="92" selection-start-column="0" selection-end-line="95" selection-end-column="10" />
-          <folding>
-            <element signature="e#324#344#0" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/01SSS_Optimal_Velocity_Model_GUI.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.53257793">
-          <caret line="90" column="67" selection-start-line="90" selection-start-column="67" selection-end-line="90" selection-end-column="67" />
+        <state vertical-scroll-proportion="0.28125">
+          <caret line="110" column="0" selection-start-line="110" selection-start-column="0" selection-end-line="126" selection-end-column="10" />
           <folding>
-            <element signature="e#325#345#0" expanded="true" />
+            <element signature="e#302#322#0" expanded="true" />
           </folding>
         </state>
       </provider>
